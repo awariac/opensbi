@@ -61,12 +61,23 @@ static struct aclint_mtimer_data mtimer = {
 	.has_64bit_mmio = false,
 };
 
+
 /*
  * Platform early initialization.
  */
 static int platform_early_init(bool cold_boot)
 {
-	return 0;
+        int rc;
+
+        if (!cold_boot)
+                return 0;
+
+	rc = litex_uart_init(PLATFORM_UART_ADDR);
+
+	if (rc)
+                return rc;
+
+        return aclint_mswi_cold_init(&mswi);
 }
 
 /*
@@ -74,65 +85,36 @@ static int platform_early_init(bool cold_boot)
  */
 static int platform_final_init(bool cold_boot)
 {
-	return 0;
-}
-
-/*
- * Initialize the vexRiscv console.
- */
-static int platform_console_init(bool could_boot)
-{
-	if (!cold_boot)
-		return 0;
-
-	return litex_uart_init(PLATFORM_UART_ADDR);
+        return 0;
 }
 
 /*
  * Initialize the platform interrupt controller during cold boot.
  */
-static int platform_irqchip_init(bool cold_boot)
+static int platform_irqchip_init(void)
 {
-	if (!cold_boot)
-		return 0;
-
 	return plic_cold_irqchip_init(&plic);
-}
-
-
-/*
- * Initialize IPI for current HART.
- */
-static int platform_ipi_init(bool cold_boot)
-{
-	if (!cold_boot)
-		return 0;
-
-	return aclint_mswi_cold_init(&mswi);
 }
 
 /*
  * Initialize platform timer during cold boot.
  */
-static int platform_timer_init(bool cold_boot)
+static int platform_timer_init(void)
 {
-	if (!cold_boot)
-		return 0;
-
-	return aclint_mtimer_cold_init(&mtimer, NULL);
+        /* Example if the generic ACLINT driver is used */
+        return aclint_mtimer_cold_init(&mtimer, NULL);
 }
 
 /*
  * Platform descriptor.
  */
 const struct sbi_platform_operations platform_ops = {
-	.early_init		= platform_early_init,
-	.final_init		= platform_final_init,
-	.console_init           = platform_console_init,
-	.irqchip_init		= platform_irqchip_init,
-	.timer_init		= platform_timer_init,
-	.ipi_init               = platform_ipi_init,
+        .early_init             = platform_early_init,
+        .final_init             = platform_final_init,
+        .irqchip_init           = platform_irqchip_init,
+        .timer_init             = platform_timer_init
 };
+
 const struct sbi_platform platform = {
 	.opensbi_version	= OPENSBI_VERSION,
 	.platform_version	= SBI_PLATFORM_VERSION(0x0, 0x00),
