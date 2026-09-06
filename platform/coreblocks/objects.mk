@@ -26,7 +26,7 @@ platform-ldflags-y =
 #
 PLATFORM_RISCV_XLEN = 32
 PLATFORM_RISCV_ABI = ilp32
-PLATFORM_RISCV_ISA = rv32imac_zicsr_zifencei
+PLATFORM_RISCV_ISA = rv32ima_zicsr_zifencei
 PLATFORM_RISCV_CODE_MODEL = medany
 
 # Space separated list of object file names to be compiled for the platform
@@ -58,9 +58,9 @@ FW_DYNAMIC=y
 FW_JUMP=y
 # This needs to be 4MB aligned for 32-bit support
 # This needs to be 2MB aligned for 64-bit support
-#FW_JUMP_OFFSET=0x400000
+FW_JUMP_OFFSET=0x400000
 #FW_JUMP_FDT_OFFSET=0x2200000
-FW_JUMP_ADDR=0x80400000
+#FW_JUMP_ADDR=0x80400000
 
 #
 # You can use fixed address for jump firmware as an alternative option.
