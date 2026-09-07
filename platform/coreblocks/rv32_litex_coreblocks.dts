@@ -13,7 +13,7 @@
     };
 
 
-    sys_clk: clock-40000000 {
+    sys_clk: clock {
         compatible = "fixed-clock";
         #clock-cells = <0>;
         clock-frequency  = <100000000>;
@@ -30,9 +30,9 @@
             riscv,isa = "rv32ima";
             riscv,isa-base = "rv32";
             riscv,isa-extensions = "a", "i", "m";
-            mmu-type = "riscv,none";
+            mmu-type = "riscv,rv32";
             reg = <0>;
-            clock-frequency = <40000000>;
+            clock-frequency = <100000000>;
             status = "okay";
 
 			hlic: interrupt-controller {
