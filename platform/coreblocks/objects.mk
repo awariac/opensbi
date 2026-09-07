@@ -48,7 +48,7 @@ platform-objs-y += rv32_litex_coreblocks.o
 # Optional parameters are commented out. Uncomment and define these parameters
 # as needed.
 #
-FW_DYNAMIC=y
+FW_DYNAMIC=n
 
 #
 # Jump firmware configuration.
@@ -59,7 +59,7 @@ FW_JUMP=y
 # This needs to be 4MB aligned for 32-bit support
 # This needs to be 2MB aligned for 64-bit support
 FW_JUMP_OFFSET=0x400000
-#FW_JUMP_FDT_OFFSET=0x2200000
+FW_JUMP_FDT_OFFSET=0x2100000;
 #FW_JUMP_ADDR=0x80400000
 
 #
