@@ -8,8 +8,8 @@
 
     chosen {
         bootargs = "console=ttyLXU0,921600 earlycon=sbi rootwait root=/dev/ram0 rw loglevel=8";
-        linux,initrd-start = <0x82000000>; // NOTE: update in post-image.sh if changed
-        linux,initrd-end   = <0x82100000>; // relpaced by post-image.sh to real initrd size to .tmp file (packed to SD, doesn't affect builtin dtb).
+        linux,initrd-start = <0x84000000>; // NOTE: update in post-image.sh if changed
+        linux,initrd-end   = <0x85000000>; // relpaced by post-image.sh to real initrd size to .tmp file (packed to SD, doesn't affect builtin dtb).
     };
 
 
@@ -45,8 +45,8 @@
 
     memory: memory@80000000 {
         device_type = "memory";
-        // important: update size (and initrd load address) if you have smaller DRAM size (<64MiB)!
-        reg = <0x80000000 0x04000000>;
+        // important: update size (and initrd load address) if you have smaller DRAM size (<128MiB)!
+        reg = <0x80000000 0x08000000>;
     };
 
     soc {

@@ -62,7 +62,7 @@ FW_JUMP=y
 #FW_JUMP_FDT_OFFSET=0x2100000;
 
 FW_JUMP_ADDR=0x80400000
-FW_JUMP_FDT_ADDR=0x81f00000
+FW_JUMP_FDT_ADDR=0x85000000
 
 #
 # You can use fixed address for jump firmware as an alternative option.
