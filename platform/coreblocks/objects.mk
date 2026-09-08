@@ -58,9 +58,11 @@ FW_DYNAMIC=n
 FW_JUMP=y
 # This needs to be 4MB aligned for 32-bit support
 # This needs to be 2MB aligned for 64-bit support
-FW_JUMP_OFFSET=0x400000
-FW_JUMP_FDT_OFFSET=0x2100000;
-#FW_JUMP_ADDR=0x80400000
+#FW_JUMP_OFFSET=0x400000
+#FW_JUMP_FDT_OFFSET=0x2100000;
+
+FW_JUMP_ADDR=0x80400000
+FW_JUMP_FDT_ADDR=0x82100000
 
 #
 # You can use fixed address for jump firmware as an alternative option.
@@ -71,7 +73,6 @@ FW_JUMP_FDT_OFFSET=0x2100000;
 # else
 # FW_JUMP_ADDR=0x80200000
 # endif
-# FW_JUMP_FDT_ADDR=0x82200000
 
 #
 # Firmware with payload configuration.
